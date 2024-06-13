@@ -1,0 +1,1197 @@
+<!DOCTYPE html>
+<html>
+
+<!-- 
+-->
+<!-- 
+    structure gotten from bootsnipp
+-->
+<head>
+    <title>CRUD API TENANT / LANDLORD</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <!-- Use W3.CSS for the Modal -->
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <!-- jQuery and Bootstrap JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <style>
+        /* Extra Styles for the Bootstrap Forms */
+        h1 {
+            font: 30px Verdana;
+            text-align: center;
+        }
+        h2 {
+            font: 20px Verdana;
+            text-align: center;
+        }
+        legend {
+            padding: 10px;
+            font: 30px Verdana
+        }
+    </style>
+</head>
+
+<body>
+    <h1>CRUD API TENANT / LANDLORD</h1>
+    <h2>CS230 Exam Daniel Hannon</h2>
+    <br />
+
+    <!-- 
+        Bootstrap Styled Form: Add User to Database 
+        Generated using the Bootsnipp Form Builder and Generator for Bootstrap
+        https://bootsnipp.com/forms
+    -->
+    <div>
+        <div class="container">
+            <div class="row justify-content-center">
+                <form id="addUserForm" class="form-horizontal">
+                    <fieldset>
+                        <!-- Form Name -->
+                        <legend>Add User to Database</legend>
+
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="who">User Type</label>
+                            <div class="col-md-4">
+                                <select id="who" name="who" placeholder="User Type"class="form-control input-md" required>
+                                    <option value="Tenant">Tenant</option>
+                                    <option value="Landlord">Landlord</option>
+                                </select>
+
+                                <label id = "DoB1" for="DoB1" style="display: none;" >Date of Birth</label>
+                                <input type="text" id="DoB" name="DoB" placeholder="Enter Date of Birth" class="form-control input-md" style="display: none;">
+
+                                <label id = "RentPerm" for="RentPerm" style="display: none;" >Permission to Rent Property from Council?</label>
+                                <select type="text" id="PermRent" name="PermRent" placeholder="Permission to Rent" class="form-control input-md" style="display: none;">
+                                    <option value = "Yes">Yes</option>
+                                    <option value = "No">No</option>
+                                </select>
+
+                                <label id = "ContactPerm" for="ContactPerm" style="display: none;" >Permission to Rent Property from Council?</label>
+                                <select type="text" id="PermContact" name="PermContact" placeholder="Permission to Contact" class="form-control input-md" style="display: none;">
+                                    <option value = "Yes">Yes</option>
+                                    <option value = "No">No</option>
+                                </select>
+
+                                <span class="help-block">Please enter your user type!</span>
+                            </div>
+                        </div>
+                        <!-- Text Input - Title -->
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="title">Title</label>
+                            <div class="col-md-4">
+                                <select id="title" name="title" placeholder="Title"class="form-control input-md" required>
+                                    <option value="Mx">Mx</option>
+                                    <option value="Ms">Ms</option>
+                                    <option value="Mr">Mr</option>
+                                    <option value="Mrs">Mrs</option>
+                                    <option value="Miss">Miss</option>
+                                    <option value="Dr">Dr</option>
+                                    <option value="Other">Other</option>
+                                </select>
+                                <input type="text" id="otherTitleInput" name="otherTitle" placeholder="Enter other title" style="display: none;">
+                                <span class="help-block">Please enter your title!</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Text Input - First Name -->
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="firstname">First Name*</label>
+                            <div class="col-md-4">
+                                <input id="firstname" name="firstname" placeholder="First Name"
+                                    class="form-control input-md" required>
+                                <span class="help-block">Please enter your first name!</span>
+                            </div>
+                        </div>
+
+                        <!-- Text Input - Surname -->
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="surname">Surname*</label>
+                            <div class="col-md-4">
+                                <input id="surname" name="surname" type="text" placeholder="Surname"
+                                    class="form-control input-md" required>
+                                <span class="help-block">Please enter your Surname</span>
+                            </div>
+                        </div>
+                        <!-- Text Input - Mobile -->
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="mobile">Mobile*</label>
+                            <div class="col-md-4">
+                                <input id="mobile" name="mobile" placeholder="Mobile"
+                                    class="form-control input-md" required>
+                                <span class="help-block">Please enter your number!</span>
+                            </div>
+                        </div>
+                        <!-- Text Input - Email -->
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="email">Email*</label>
+                            <div class="col-md-4">
+                                <input id="email" name="email" type="text" placeholder="Email"
+                                    class="form-control input-md" required>
+                                <span class="help-block">Please enter your Email</span>
+                            </div>
+                        </div>
+                        <legend>Add Home Address</legend>
+                        <!-- Text Input - Address Line 1 -->
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="address1">Address Line 1*</label>
+                            <div class="col-md-4">
+                                <input id="address1" name="address1" type="text" placeholder="Address Line 1"
+                                    class="form-control input-md" required>
+                                <span class="help-block">Please enter your address line 1</span>
+                            </div>
+                        </div>
+                        <!-- Text Input - Address Line 2 -->
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="address2">Address Line 2</label>
+                            <div class="col-md-4">
+                                <input id="address2" name="address2" type="text" placeholder="Address Line 2"
+                                    class="form-control input-md">
+                                <span class="help-block">Please enter your address line 2</span>
+                            </div>
+                        </div>
+                        <!-- Text Input - Town -->
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="town">Town*</label>
+                            <div class="col-md-4">
+                                <input id="town" name="town" type="text" placeholder="Town"
+                                    class="form-control input-md" required>
+                                <span class="help-block">Please enter your town</span>
+                            </div>
+                        </div>
+                        <!-- Text Input - County/City -->
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="cc">County/City*</label>
+                            <div class="col-md-4">
+                                <input id="cc" name="cc" type="text" placeholder="County/City"
+                                    class="form-control input-md" required>
+                                <span class="help-block">Please enter your county/city</span>
+                            </div>
+                        </div>
+                        <!-- Text Input - Eircode -->
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="eircode">Eircode</label>
+                            <div class="col-md-4">
+                                <input id="eircode" name="eircode" type="text" placeholder="Eircode"
+                                    class="form-control input-md">
+                                <span class="help-block">Please enter your eircode</span>
+                            </div>
+                        </div>
+                        <!-- Submit -->
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="submit"></label>
+                            <div class="col-md-4">
+                                <!--<input name = "create "type="submit" value="Send User Data" class="btn btn-primary">-->
+                                <button id = "create" name = "create" type="submit" value="create" class="btn btn-primary">Send User Data</button>
+                            </div>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <br />
+
+    <div>
+        <div class="container">
+            <div class="row justify-content-center">
+                <form id="getUserDatabaseForm" class="form-horizontal">
+                    <fieldset>
+                        <!-- Form Name -->
+                        <legend>Show User Database</legend>
+                        <!-- Text Input - First Name GET -->
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="getfirstname">Email</label>
+                            <div class="col-md-4" required>
+                                <input id="getfirstname" name="getfirstname" placeholder="E-mail"
+                                    class="form-control input-md" required>
+                                <span class="help-block">Please enter the customers email!</span>
+                            </div>
+                        </div>
+                        
+
+                        <!-- Textarea -->
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="showUserDatabase">User Database</label>
+                            <div class="col-md-4">
+                                <textarea class="form-control" id="showUserDatabase"
+                                    name="showUserDatabase">Retrieved Database displayed here!</textarea>
+                            </div>
+                        </div>
+
+                        <!-- Submit -->
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="submit"></label>
+                            <div class="col-md-4">
+                                <button id = "retrieve" name = "retrieve" type="submit" value="retrieve" class="btn btn-primary">Get User Database</button>
+                            </div>
+                        </div>
+
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+
+
+        <div class="container">
+            <div class="row justify-content-center">
+                <form id="delUserData" class="form-horizontal">
+                    <fieldset>
+                        <!-- Form Name -->
+                        <legend>Delete User Data</legend>
+                        <!-- Text Input - First Name DEL -->
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="delfirstname">First Name</label>
+                            <div class="col-md-4">
+                                <input id="delfirstname" name="delfirstname" placeholder="First Name"
+                                    class="form-control input-md">
+                                <span class="help-block">Please enter your first name!</span>
+                            </div>
+                        </div>
+                        <!-- Text Input - Surname Name DEL -->
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="delsurname">Surname</label>
+                            <div class="col-md-4">
+                                <input id="delsurname" name="delsurname" placeholder="Surname"
+                                    class="form-control input-md">
+                                <span class="help-block">Please enter your surname!</span>
+                            </div>
+                        </div>
+                        <!-- Text Input - Mobile DEL -->
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="delmobile">Mobile</label>
+                            <div class="col-md-4">
+                                <input id="delmobile" name="delmobile" placeholder="Mobile"
+                                    class="form-control input-md">
+                                <span class="help-block">Please enter your mobile!</span>
+                            </div>
+                        </div>
+                        <!-- Text Input - Email DEL -->
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="delemail">Email</label>
+                            <div class="col-md-4">
+                                <input id="delemail" name="delemail" placeholder="Email"
+                                    class="form-control input-md">
+                                <span class="help-block">Please enter your email!</span>
+                            </div>
+                        </div>                        
+                        <!-- Submit -->
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="submit"></label>
+                            <div class="col-md-4">
+                                <button id = "del" name = "del" type="submit" value="del" class="btn btn-primary">Delete User</button>
+                            </div>
+                        </div>
+
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row justify-content-center">
+            <form id="updateUserForm" class="form-horizontal">
+                <fieldset>
+                    <!-- Form Name -->
+                    <legend>Update User in Database</legend>
+                    <div>(Enter first and surname of the user you would like to edit)</div>
+                    <!-- Text Input - First Name -->
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="upfirstname">First Name</label>
+                        <div class="col-md-4">
+                            <input id="upfirstname" name="upfirstname" placeholder="First Name"
+                                class="form-control input-md" required>
+                            <span class="help-block">Please enter your first name!</span>
+                        </div>
+                    </div>
+
+                    <!-- Text Input - Surname -->
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="upsurname">Surname</label>
+                        <div class="col-md-4">
+                            <input id="upsurname" name="upsurname" type="text" placeholder="Surname"
+                                class="form-control input-md" required>
+                            <span class="help-block">Please enter your Surname</span>
+                        </div>
+                    </div>
+                    <!-- Text Input - Title -->
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="uptitle">Title</label>
+                        <div class="col-md-4">
+                            <input id="uptitle" name="uptitle" placeholder="Title"
+                                class="form-control input-md">
+                            <span class="help-block">Please enter your title!</span>
+                        </div>
+                    </div>
+                    <!-- Text Input - Mobile -->
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="upmobile">Mobile</label>
+                        <div class="col-md-4">
+                            <input id="upobile" name="upmobile" placeholder="Mobile"
+                                class="form-control input-md">
+                            <span class="help-block">Please enter your number!</span>
+                        </div>
+                    </div>
+                    <!-- Text Input - Email -->
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="upemail">Email</label>
+                        <div class="col-md-4">
+                            <input id="upemail" name="upemail" type="text" placeholder="Email"
+                                class="form-control input-md">
+                            <span class="help-block">Please enter your Email</span>
+                        </div>
+                    </div>
+                    <legend>Update Home Address</legend>
+                    <!-- Text Input - Address Line 1 -->
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="upaddress1">Address Line 1</label>
+                        <div class="col-md-4">
+                            <input id="upaddress1" name="upaddress1" type="text" placeholder="Address Line 1"
+                                class="form-control input-md">
+                            <span class="help-block">Please enter your address line 1</span>
+                        </div>
+                    </div>
+                    <!-- Text Input - Address Line 2 -->
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="upaddress2">Address Line 2</label>
+                        <div class="col-md-4">
+                            <input id="upaddress2" name="upaddress2" type="text" placeholder="Address Line 2"
+                                class="form-control input-md">
+                            <span class="help-block">Please enter your address line 2</span>
+                        </div>
+                    </div>
+                    <!-- Text Input - Town -->
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="uptown">Town</label>
+                        <div class="col-md-4">
+                            <input id="uptown" name="uptown" type="text" placeholder="Town"
+                                class="form-control input-md">
+                            <span class="help-block">Please enter your town</span>
+                        </div>
+                    </div>
+                    <!-- Text Input - County/City -->
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="upcc">County/City</label>
+                        <div class="col-md-4">
+                            <input id="upcc" name="upcc" type="text" placeholder="County/City"
+                                class="form-control input-md">
+                            <span class="help-block">Please enter your county/city</span>
+                        </div>
+                    </div>
+                    <!-- Text Input - Eircode -->
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="upeircode">Eircode</label>
+                        <div class="col-md-4">
+                            <input id="upeircode" name="upeircode" type="text" placeholder="Eircode"
+                                class="form-control input-md">
+                            <span class="help-block">Please enter your eircode</span>
+                        </div>
+                    </div>
+                    <!-- Submit -->
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="submit"></label>
+                        <div class="col-md-4">
+                            <!--<input name = "create "type="submit" value="Send User Data" class="btn btn-primary">-->
+                            <button id = "update" name = "update" type="submit" value="update" class="btn btn-primary">Update User Data</button>
+                        </div>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row justify-content-center">
+        <form id="createContract" class="form-horizontal">
+            <fieldset>
+                <!-- Form Name -->
+                <legend>Create Contract</legend>
+                <!-- Text Input - First Name DEL -->
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="contractdate" >Contract Date*</label>
+                    <div class="col-md-4">
+                        <input id="contractdate" name="contractdate" placeholder="Contract Date"
+                            class="form-control input-md" required>
+                        <span class="help-block">Please enter date of contract!</span>
+                    </div>
+                </div>
+                <!-- Text Input - Surname Name DEL -->
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="propertyaddress">Property Address*</label>
+                    <div class="col-md-4">
+                        <input id="propertyaddress" name="propertyaddress" placeholder="Address"
+                            class="form-control input-md" required>
+                        <span class="help-block">Please enter your property address!</span>
+                    </div>
+                </div>
+                <!-- Text Input - Mobile DEL -->
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="contractTenants">Number of Tenants*</label>
+                    <div class="col-md-4">
+                        <select id="TenantNo" name="TenantNo" placeholder="TenantNo"class="form-control input-md" required>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                        </select>
+                        <label id = "Person1" for="Person1" style="display: inline-block;" >Tenant First Name</label>
+                                <input type="text" id="Person1FirstName" name="Person1FirstName" placeholder="Enter First Name of Tenant" class="form-control input-md" style="display: inline-block;">
+                                <label id = "Person1S" for="Person1S" style="display: inline-block;" >Tenant Surname</label>
+                                <input type="text" id="Person1Surname" name="Person1Surname" placeholder="Enter Surname of Tenant" class="form-control input-md" style="display: inline-block;">
+                                
+                                <label id = "Person2" for="Person2" style="display: none;" >2nd Tenant's First Name</label>
+                                <input type="text" id="Person2FirstName" name="Person2FirstName" placeholder="Enter First Name of Tenant" class="form-control input-md" style="display: none;">
+                                <label id = "Person2S" for="Person2S" style="display: none;" >2nd Tenant's Surname</label>
+                                <input type="text" id="Person2Surname" name="Person2Surname" placeholder="Enter Surname of Tenant" class="form-control input-md" style="display: none;">
+        
+                                <label id = "Person3" for="Person3" style="display: none;" >3rd Tenant's First Name</label>
+                                <input type="text" id="Person3FirstName" name="Person3FirstName" placeholder="Enter First Name of Tenant" class="form-control input-md" style="display: none;">
+                                <label id = "Person3S" for="Person3S" style="display: none;" >3rd Tenant's Surname</label>
+                                <input type="text" id="Person3Surname" name="Person3Surname" placeholder="Enter Surname of Tenant" class="form-control input-md" style="display: none;">
+                        <span class="help-block">Please enter Tenant or Tenants!</span>
+                    </div>
+                </div>
+
+                <!-- Text Input - Email DEL -->
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="landlordfirst">Landlord Firstname*</label>
+                    <div class="col-md-4">
+                        <input id="landlordfirst" name="landlordfirst" placeholder="Firstname"
+                            class="form-control input-md" required>
+                        <span class="help-block">Please enter landlords first name!</span>
+                    </div>
+                </div>          
+                
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="landlordsurname">Landlord Surname*</label>
+                    <div class="col-md-4">
+                        <input id="landlordsurname" name="landlordsurname" placeholder="surname"
+                            class="form-control input-md" required>
+                        <span class="help-block">Please enter landlords surname!</span>
+                    </div>
+                </div>       
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="fee">Fee (Monthly) (€)*</label>
+                    <div class="col-md-4">
+                        <input id="fee" name="fee" placeholder="€"
+                            class="form-control input-md" required>
+                        <span class="help-block">Please enter monthly fee!</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="doorno">Property Door Number*</label>
+                    <div class="col-md-4">
+                        <input id="doorno" name="doorno" placeholder="Door Number"
+                            class="form-control input-md" required>
+                        <span class="help-block">Please enter door number!</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="contractlength">Contract Length*</label>
+                    <div class="col-md-4">
+                        <select id="contractlength" name="contractlength" placeholder="contractlength"class="form-control input-md" required>
+                            <option value="Month">Month</option>
+                            <option value="Year">Year</option>
+                            <option value="Permanent">Permanent</option>
+                        </select>
+                        <span class="help-block">Please select contract length!</span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="proptype">Property Type*</label>
+                    <div class="col-md-4">
+                        <select id="proptype" name="proptype" placeholder="proptype"class="form-control input-md" required>
+                            <option value="Apartment">Apartment</option>
+                            <option value="Semi-Detached">Semi-Detached</option>
+                            <option value="Detached">Detached</option>
+                            <option value="Other">Other</option>
+                        </select>
+                        <span class="help-block">Please select contract length!</span>
+                        <input type="text" id="otherPropInput" name="otherPropInput" placeholder="Enter type of property" class="form-control input-md" style="display: none;">
+                    </div>
+                </div>
+                                                         
+                <!-- Submit -->
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="submit"></label>
+                    <div class="col-md-4">
+                        <button id = "thecc" name = "thecc" type="submit" value="thecc" class="btn btn-primary">Send data</button>
+                    </div>
+                </div>
+
+            </fieldset>
+        </form>
+    </div>
+</div>
+</div>
+
+<div>
+    <div class="container">
+        <div class="row justify-content-center">
+            <form id="getContractDatabaseForm" class="form-horizontal">
+                <fieldset>
+                    <!-- Form Name -->
+                    <legend>Show Contract Database</legend>
+                    <!-- Text Input - First Name GET -->
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="getpropaddress">Property Address</label>
+                        <div class="col-md-4">
+                            <input id="getpropaddress" name="getpropaddress" placeholder="Property Address"
+                                class="form-control input-md" required>
+                            <span class="help-block">Please enter the property address in the contract!</span>
+                        </div>
+                    </div>
+                    
+
+                    <!-- Textarea -->
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="showContractDatabase">Contract Database</label>
+                        <div class="col-md-4">
+                            <textarea class="form-control" id="showContractDatabase"
+                                name="showContractDatabase">Retrieved Database displayed here!</textarea>
+                        </div>
+                    </div>
+
+                    <!-- Submit -->
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="submit"></label>
+                        <div class="col-md-4">
+                            <button id = "getcc" name = "getcc" type="submit" value="getcc" class="btn btn-primary">Get Contract Database</button>
+                        </div>
+                    </div>
+
+                </fieldset>
+            </form>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row justify-content-center">
+            <form id="updateContract" class="form-horizontal">
+                <fieldset>
+                    <!-- Form Name -->
+                    <legend>Update Contract</legend>
+                    <!-- Text Input - First Name DEL -->
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="oldpropertyaddress" >Current Property Address</label>
+                        <div class="col-md-4">
+                            <input id="oldpropertyaddress" name="oldpropertyaddress" placeholder="Current Property Address"
+                                class="form-control input-md" required>
+                            <span class="help-block">Please enter current property address!</span>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="upcontractdate" >Contract Date</label>
+                        <div class="col-md-4">
+                            <input id="upcontractdate" name="upcontractdate" placeholder="Contract Date"
+                                class="form-control input-md">
+                            <span class="help-block">Please enter date of contract!</span>
+                        </div>
+                    </div>
+                    <!-- Text Input - Surname Name DEL -->
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="uppropertyaddress">Property Address</label>
+                        <div class="col-md-4">
+                            <input id="uppropertyaddress" name="uppropertyaddress" placeholder="Address"
+                                class="form-control input-md">
+                            <span class="help-block">Please enter your property address!</span>
+                        </div>
+                    </div>
+                    <!-- Text Input - Mobile DEL -->
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="upcontractTenants">Number of Tenants</label>
+                        <div class="col-md-4">
+                            <select id="upTenantNo" name="upTenantNo" placeholder="upTenantNo"class="form-control input-md">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                            </select>
+                            <label id = "upPerson1" for="upPerson1" style="display: inline-block;" >Tenant First Name</label>
+                                    <input type="text" id="upPerson1FirstName" name="upPerson1FirstName" placeholder="Enter First Name of Tenant" class="form-control input-md" style="display: inline-block;">
+                                    <label id = "upPerson1S" for="upPerson1S" style="display: inline-block;" >Tenant Surname</label>
+                                    <input type="text" id="upPerson1Surname" name="upPerson1Surname" placeholder="Enter Surname of Tenant" class="form-control input-md" style="display: inline-block;">
+                                    
+                                    <label id = "upPerson2" for="upPerson2" style="display: none;" >2nd Tenant's First Name</label>
+                                    <input type="text" id="upPerson2FirstName" name="upPerson2FirstName" placeholder="Enter First Name of Tenant" class="form-control input-md" style="display: none;">
+                                    <label id = "upPerson2S" for="upPerson2S" style="display: none;" >2nd Tenant's Surname</label>
+                                    <input type="text" id="upPerson2Surname" name="upPerson2Surname" placeholder="Enter Surname of Tenant" class="form-control input-md" style="display: none;">
+            
+                                    <label id = "upPerson3" for="upPerson3" style="display: none;" >3rd Tenant's First Name</label>
+                                    <input type="text" id="upPerson3FirstName" name="upPerson3FirstName" placeholder="Enter First Name of Tenant" class="form-control input-md" style="display: none;">
+                                    <label id = "upPerson3S" for="upPerson3S" style="display: none;" >3rd Tenant's Surname</label>
+                                    <input type="text" id="upPerson3Surname" name="upPerson3Surname" placeholder="Enter Surname of Tenant" class="form-control input-md" style="display: none;">
+                            <span class="help-block">Please enter Tenant or Tenants!</span>
+                        </div>
+                    </div>
+    
+                    <!-- Text Input - Email DEL -->
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="uplandlordfirst">Landlord Firstname</label>
+                        <div class="col-md-4">
+                            <input id="uplandlordfirst" name="uplandlordfirst" placeholder="Firstname"
+                                class="form-control input-md">
+                            <span class="help-block">Please enter landlords first name!</span>
+                        </div>
+                    </div>          
+                    
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="uplandlordsurname">Landlord Surname</label>
+                        <div class="col-md-4">
+                            <input id="uplandlordsurname" name="uplandlordsurname" placeholder="surname"
+                                class="form-control input-md">
+                            <span class="help-block">Please enter landlords surname!</span>
+                        </div>
+                    </div>       
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="upfee">Fee (Monthly) (€)</label>
+                        <div class="col-md-4">
+                            <input id="upfee" name="upfee" placeholder="€"
+                                class="form-control input-md">
+                            <span class="help-block">Please enter monthly fee!</span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="updoorno">Property Door Number</label>
+                        <div class="col-md-4">
+                            <input id="updoorno" name="updoorno" placeholder="Door Number"
+                                class="form-control input-md">
+                            <span class="help-block">Please enter door number!</span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="upcontractlength">Contract Length</label>
+                        <div class="col-md-4">
+                            <select id="upcontractlength" name="upcontractlength" placeholder="Contract Length"class="form-control input-md">
+                                <option value="Month">Month</option>
+                                <option value="Year">Year</option>
+                                <option value="Permanent">Permanent</option>
+                            </select>
+                            <span class="help-block">Please select contract length!</span>
+                        </div>
+                    </div>
+    
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="upproptype">Property Type</label>
+                        <div class="col-md-4">
+                            <select id="upproptype" name="upproptype" placeholder="upproptype"class="form-control input-md">
+                                <option value="Apartment">Apartment</option>
+                                <option value="Semi-Detached">Semi-Detached</option>
+                                <option value="Detached">Detached</option>
+                                <option value="Other">Other</option>
+                            </select>
+                            <span class="help-block">Please select contract length!</span>
+                            <input type="text" id="upotherPropInput" name="upotherPropInput" placeholder="Enter type of property" class="form-control input-md" style="display: none;">
+                        </div>
+                    </div>
+                                                             
+                    <!-- Submit -->
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="submit"></label>
+                        <div class="col-md-4">
+                            <button id = "updatecc" name = "updatecc" type="submit" value="updatecc" class="btn btn-primary">Send data</button>
+                        </div>
+                    </div>
+    
+                </fieldset>
+            </form>
+        </div>
+    </div>
+    </div>
+
+    <div class="container">
+        <div class="row justify-content-center">
+            <form id="delContractData" class="form-horizontal">
+                <fieldset>
+                    <!-- Form Name -->
+                    <legend>Delete Contract Data</legend>
+                    <!-- Text Input - First Name DEL -->
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="delpropaddress">First Name</label>
+                        <div class="col-md-4">
+                            <input id="delpropaddress" name="delpropaddress" placeholder="Property Address"
+                                class="form-control input-md">
+                            <span class="help-block">Please enter the property address from the contract you wish to delete!</span>
+                        </div>
+                    </div>
+                                    
+                    <!-- Submit -->
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="submit"></label>
+                        <div class="col-md-4">
+                            <button id = "ccdel" name = "ccdel" type="submit" value="ccdel" class="btn btn-primary">Delete Contract</button>
+                        </div>
+                    </div>
+
+                </fieldset>
+            </form>
+        </div>
+    </div>
+</div>
+
+    <!-- 
+        Modal Popup used to confirm User Data was sent and added to Database 
+        W3.CSS Styled Form generated using W3.CSS modal demos
+        https://www.w3schools.com/w3css/w3css_modal.asp
+    -->
+    <div id="modalUserAdded" class="w3-modal w3-animate-opacity">
+        <div class="w3-modal-content w3-card-4">
+            <header class="w3-container w3-blue-grey">
+                <span onclick="document.getElementById('modalUserAdded').style.display='none'"
+                    class="w3-button w3-large w3-display-topright">&times;</span>
+                <h2>User Added to Database!</h2>
+            </header>
+            <div class="w3-container">
+                <p></p>
+                <p id="modalUserAddedMessage">Message Text</p>
+            </div>
+            <footer class="w3-container w3-blue-grey">
+                <p></p>
+            </footer>
+        </div>
+    </div>
+
+    <!-- 
+        jQuery Scripts used to implement form processing and Ajax functionality
+        https://www.w3schools.com/w3css/w3css_modal.asp
+    -->
+    <script>
+        document.getElementById("title").addEventListener("change", function() { //event listener that runs when a change happens with the title
+            var selectedOption = this.options[this.selectedIndex].value; //assigns title value to varibale
+            if (selectedOption == "Other") { //checks if it equals Other
+                document.getElementById("otherTitleInput").style.display = "inline-block"; //makes the input field visible for other
+            } else {
+                document.getElementById("otherTitleInput").style.display = "none"; //else does nothing
+            }
+        });
+        document.getElementById("who").addEventListener("change", function() { //event listener that runs when a change happens with the title
+            var selectedOption = this.options[this.selectedIndex].value; //assigns title value to varibale
+            if (selectedOption == "Landlord") { //checks if it equals Other
+                document.getElementById("DoB").style.display = "inline-block"; //makes the input field visible for other
+                document.getElementById("PermRent").style.display = "inline-block"; //makes the input field visible for other
+                document.getElementById("PermContact").style.display = "inline-block"; //makes the input field visible for other
+                document.getElementById("RentPerm").style.display = "inline-block"; //makes the input field visible for other
+                document.getElementById("ContactPerm").style.display = "inline-block"; //makes the input field visible for other
+                document.getElementById("DoB1").style.display = "inline-block"; //makes the input field visible for other
+
+                
+            } else {
+                document.getElementById("DoB").style.display = "none"; //else does nothing
+                document.getElementById("PermRent").style.display = "none"; //else does nothing
+                document.getElementById("PermContact").style.display = "none"; //else does nothing
+                document.getElementById("RentPerm").style.display = "none"; //makes the input field visible for other
+                document.getElementById("ContactPerm").style.display = "none"; //makes the input field visible for other
+                document.getElementById("DoB1").style.display = "none"; //makes the input field visible for other
+
+            }
+        });
+        document.getElementById("TenantNo").addEventListener("change", function() { //event listener that runs when a change happens with the title
+            var selectedOption = this.options[this.selectedIndex].value; //assigns title value to varibale
+            if (selectedOption == "1") 
+            { 
+                document.getElementById("Person2").style.display = "none"; //makes the input field visible for other
+                document.getElementById("Person2S").style.display = "none"; //makes the input field visible for other
+                document.getElementById("Person2FirstName").style.display = "none"; //makes the input field visible for other
+                document.getElementById("Person2Surname").style.display = "none"; //makes the input field visible for other
+                document.getElementById("Person3").style.display = "none"; //makes the input field visible for other
+                document.getElementById("Person3S").style.display = "none"; //makes the input field visible for other
+                document.getElementById("Person3FirstName").style.display = "none"; //makes the input field visible for other
+                document.getElementById("Person3Surname").style.display = "none"; //makes the input field visible for other
+            } 
+            if (selectedOption == "2") 
+            {
+                document.getElementById("Person2").style.display = "inline-block"; //makes the input field visible for other
+                document.getElementById("Person2S").style.display = "inline-block"; //makes the input field visible for other
+                document.getElementById("Person2FirstName").style.display = "inline-block"; //makes the input field visible for other
+                document.getElementById("Person2Surname").style.display = "inline-block"; //makes the input field visible for other
+                document.getElementById("Person3").style.display = "none"; //makes the input field visible for other
+                document.getElementById("Person3S").style.display = "none"; //makes the input field visible for other
+                document.getElementById("Person3FirstName").style.display = "none"; //makes the input field visible for other
+                document.getElementById("Person3Surname").style.display = "none"; //makes the input field visible for other
+            }
+            if (selectedOption == "3") 
+            {
+                document.getElementById("Person2").style.display = "inline-block"; //makes the input field visible for other
+                document.getElementById("Person2S").style.display = "inline-block"; //makes the input field visible for other
+                document.getElementById("Person2FirstName").style.display = "inline-block"; //makes the input field visible for other
+                document.getElementById("Person2Surname").style.display = "inline-block"; //makes the input field visible for other
+                document.getElementById("Person3").style.display = "inline-block"; //makes the input field visible for other
+                document.getElementById("Person3S").style.display = "inline-block"; //makes the input field visible for other
+                document.getElementById("Person3FirstName").style.display = "inline-block"; //makes the input field visible for other
+                document.getElementById("Person3Surname").style.display = "inline-block"; //makes the input field visible for other
+            }
+
+        });
+
+        document.getElementById("upTenantNo").addEventListener("change", function() { //event listener that runs when a change happens with the title
+            var selectedOption = this.options[this.selectedIndex].value; //assigns title value to varibale
+            if (selectedOption == "1") 
+            { 
+                document.getElementById("upPerson2").style.display = "none"; //makes the input field visible for other
+                document.getElementById("upPerson2S").style.display = "none"; //makes the input field visible for other
+                document.getElementById("upPerson2FirstName").style.display = "none"; //makes the input field visible for other
+                document.getElementById("upPerson2Surname").style.display = "none"; //makes the input field visible for other
+                document.getElementById("upPerson3").style.display = "none"; //makes the input field visible for other
+                document.getElementById("upPerson3S").style.display = "none"; //makes the input field visible for other
+                document.getElementById("upPerson3FirstName").style.display = "none"; //makes the input field visible for other
+                document.getElementById("upPerson3Surname").style.display = "none"; //makes the input field visible for other
+            } 
+            if (selectedOption == "2") 
+            {
+                document.getElementById("upPerson2").style.display = "inline-block"; //makes the input field visible for other
+                document.getElementById("upPerson2S").style.display = "inline-block"; //makes the input field visible for other
+                document.getElementById("upPerson2FirstName").style.display = "inline-block"; //makes the input field visible for other
+                document.getElementById("upPerson2Surname").style.display = "inline-block"; //makes the input field visible for other
+                document.getElementById("upPerson3").style.display = "none"; //makes the input field visible for other
+                document.getElementById("upPerson3S").style.display = "none"; //makes the input field visible for other
+                document.getElementById("upPerson3FirstName").style.display = "none"; //makes the input field visible for other
+                document.getElementById("upPerson3Surname").style.display = "none"; //makes the input field visible for other
+            }
+            if (selectedOption == "3") 
+            {
+                document.getElementById("upPerson2").style.display = "inline-block"; //makes the input field visible for other
+                document.getElementById("upPerson2S").style.display = "inline-block"; //makes the input field visible for other
+                document.getElementById("upPerson2FirstName").style.display = "inline-block"; //makes the input field visible for other
+                document.getElementById("upPerson2Surname").style.display = "inline-block"; //makes the input field visible for other
+                document.getElementById("upPerson3").style.display = "inline-block"; //makes the input field visible for other
+                document.getElementById("upPerson3S").style.display = "inline-block"; //makes the input field visible for other
+                document.getElementById("upPerson3FirstName").style.display = "inline-block"; //makes the input field visible for other
+                document.getElementById("upPerson3Surname").style.display = "inline-block"; //makes the input field visible for other
+            }
+
+        });
+
+        document.getElementById("upproptype").addEventListener("change", function() { //event listener that runs when a change happens with the title
+            var selectedOption = this.options[this.selectedIndex].value; //assigns title value to varibale
+            if (selectedOption == "Other") { //checks if it equals Other
+                document.getElementById("upotherPropInput").style.display = "inline-block"; //makes the input field visible for other
+            } else {
+                document.getElementById("upotherPropInput").style.display = "none"; //else does nothing
+            }
+        });
+
+        document.getElementById("proptype").addEventListener("change", function() { //event listener that runs when a change happens with the title
+            var selectedOption = this.options[this.selectedIndex].value; //assigns title value to varibale
+            if (selectedOption == "Other") { //checks if it equals Other
+                document.getElementById("otherPropInput").style.display = "inline-block"; //makes the input field visible for other
+            } else {
+                document.getElementById("otherPropInput").style.display = "none"; //else does nothing
+            }
+        });
+
+
+        $(document).ready(function () {
+
+            // handle "Add User to Database" submit button click
+            $('#addUserForm').submit(function (e) {
+                var user = { //all data that will be sent to node
+                    usertype: $('select[name=who]').val(),
+                    dob: $('input[name=DoB]').val(),
+                    rentperm: $('select[name=PermRent]').val(),
+                    contactperm: $('select[name=PermContact]').val(),
+                    title:  $('select[name=title]').val(),
+                    other:  $('input[name=otherTitle]').val(),
+                    firstname: $('input[name=firstname]').val(),
+                    surname: $('input[name=surname]').val(),
+                    mobile:$('input[name=mobile]').val(),
+                    email: $('input[name=email]').val(),
+                    address1:  $('input[name=address1]').val(),
+                    address2: $('input[name=address2]').val(),
+                    town: $('input[name=town]').val(),
+                    cc:$('input[name=cc]').val(),
+                    eircode: $('input[name=eircode]').val(),
+                    key: $('button[name=create]').val(),
+                };
+                $.ajax({
+                    type: 'POST',
+                    url: 'http://localhost:8000/api/user',
+                    data: user
+                })
+                    .done(function (data) {
+                        // reset the html on submit for next input
+                        $('select[name=title]').val('');
+                        $('input[name=otherTitle]').val('');
+                        $('input[name=firstname]').val('');
+                        $('input[name=surname]').val('');
+                        $('input[name=mobile]').val('');
+                        $('input[name=email]').val('');
+                        $('input[name=address1]').val('');
+                        $('input[name=address2]').val('');
+                        $('input[name=town]').val('');
+                        $('input[name=cc]').val('');
+                        $('input[name=eircode]').val('');
+
+                        // show confirmation message from API
+                        showUserModal(data);
+                    });
+                e.preventDefault(); // when method is called, the default action of the event will not be triggered.
+                                    // meand that clicked submit button will not take the browser to a new URL.
+            });
+
+            // handle "Get User Database" submit button click
+
+            $('#getUserDatabaseForm').submit(function (e) {
+                var user2 = {
+                    getfirstname:$('input[name=getfirstname]').val(),
+                    getsurname:$('input[name=getsurname]').val(),
+                    key1: $('button[name=retrieve]').val(),
+                }
+
+                $.ajax({
+                    type: 'POST',
+                    url: 'http://localhost:8000/api/user',
+                    data: user2
+                })
+                    .done(function (data) {
+                        $('input[name=getfirstname]').val('');
+                        $('input[name=getsurname]').val('');
+                        // display the database in the textarea and trigger an input change event
+                        $('#showUserDatabase').val((JSON.stringify(data))).trigger('input');
+                    });
+                e.preventDefault(); // when method is called, the default action of the event will not be triggered.
+                                    // meand that clicked submit button will not take the browser to a new URL.
+            });
+            $('#delUserData').submit(function (e) {
+                var user3 = {
+                    delfirstname:$('input[name=delfirstname]').val(),
+                    delsurname:$('input[name=delsurname]').val(),
+                    delemail:$('input[name=delemail]').val(),
+                    delmobile:$('input[name=delmobile]').val(),
+                    key2: $('button[name=del]').val(),
+                }
+
+                $.ajax({
+                    type: 'POST',
+                    url: 'http://localhost:8000/api/user',
+                    data: user3
+                })
+                    .done(function (data) {
+                        $('input[name=delfirstname]').val('');
+                        $('input[name=delsurname]').val('');
+                        $('input[name=delemail]').val('');
+                        $('input[name=delmobile]').val('');
+                    });
+                e.preventDefault(); // when method is called, the default action of the event will not be triggered.
+                                    // meand that clicked submit button will not take the browser to a new URL.
+            });
+            $('#updateUserForm').submit(function (e) {
+                var user4 = {
+                    uptitle:  $('input[name=uptitle]').val(),
+                    upfirstname: $('input[name=upfirstname]').val(),
+                    upsurname: $('input[name=upsurname]').val(),
+                    upmobile:$('input[name=upmobile]').val(),
+                    upemail: $('input[name=upemail]').val(),
+                    upaddress1:  $('input[name=upaddress1]').val(),
+                    upaddress2: $('input[name=upaddress2]').val(),
+                    uptown: $('input[name=uptown]').val(),
+                    upcc:$('input[name=upcc]').val(),
+                    upeircode: $('input[name=upeircode]').val(),
+                    upshipaddress1:  $('input[name=upshipaddress1]').val(),
+                    upshipaddress2: $('input[name=upshipaddress2]').val(),
+                    upshiptown: $('input[name=upshiptown]').val(),
+                    upshipcc:$('input[name=upshipcc]').val(),
+                    upshipeircode: $('input[name=upshipeircode]').val(),
+                    key3: $('button[name=update]').val(),
+                };
+                $.ajax({
+                    type: 'POST',
+                    url: 'http://localhost:8000/api/user',
+                    data: user4
+                })
+                    .done(function (data) {
+                        // reset the input fields for next time
+                        $('input[name=uptitle]').val('');
+                        $('input[name=upfirstname]').val('');
+                        $('input[name=upsurname]').val('');
+                        $('input[name=upmobile]').val('');
+                        $('input[name=upemail]').val('');
+                        $('input[name=upaddress1]').val('');
+                        $('input[name=upaddress2]').val('');
+                        $('input[name=uptown]').val('');
+                        $('input[name=upcc]').val('');
+                        $('input[name=upeircode]').val('');
+
+                    });
+                e.preventDefault();
+            });
+
+            $('#createContract').submit(function (e) {
+                var user5 = { //all data that will be sent to node
+                    contractdate: $('input[name=contractdate]').val(),
+                    propaddress: $('input[name=propertyaddress]').val(),
+                    tenantno: $('select[name=TenantNo]').val(),
+                    tenant1f: $('input[name=Person1FirstName]').val(),
+                    tenant1s:  $('input[name=Person1Surname]').val(),
+                    tenant2f:  $('input[name=Person2FirstName]').val(),
+                    tenant2s: $('input[name=Person2Surname]').val(),
+                    tenant3f: $('input[name=Person3FirstName]').val(),
+                    tenant3s:$('input[name=Person3Surname]').val(),
+                    landlordf: $('input[name=landlordfirst]').val(),
+                    landlords:  $('input[name=landlordsurname]').val(),
+                    fee: $('input[name=fee]').val(),
+                    doorno: $('input[name=doorno]').val(),
+                    contractlength:$('select[name=contractlength]').val(),
+                    proptype: $('select[name=proptype]').val(),
+                    otherPropInput: $('input[name=otherPropInput]').val(),
+                    key4: $('button[name=thecc]').val(),
+                };
+                $.ajax({
+                    type: 'POST',
+                    url: 'http://localhost:8000/api/user',
+                    data: user5
+                })
+                    .done(function (data) {
+                        // reset the html on submit for next input
+                        $('input[name=contractdate]').val('');
+                        $('input[name=propertyaddress]').val('');
+                        $('input[name=Person1FirstName]').val('');
+                        $('input[name=Person1Surname]').val('');
+                        $('input[name=Person2FirstName]').val('');
+                        $('input[name=Person2Surname]').val('');
+                        $('input[name=Person3FirstName]').val('');
+                        $('input[name=Person3Surname]').val('');
+                        $('input[name=landlordfirst]').val('');
+                        $('input[name=landlordsurname]').val('');
+                        $('input[name=fee]').val('');
+                        $('input[name=doorno]').val('');
+                        $('select[name=contractlength]').val('');
+                        $('select[name=proptype]').val('');
+                        $('input[name=otherPropInput]').val('');
+
+
+                        // show confirmation message from API
+                        showUserModal(data);
+                    });
+                e.preventDefault(); // when method is called, the default action of the event will not be triggered.
+                                    // meand that clicked submit button will not take the browser to a new URL.
+            });
+
+            $('#getContractDatabaseForm').submit(function (e) {
+                var user6 = 
+                {
+                    getpropaddress:$('input[name=getpropaddress]').val(),
+                    key5: $('button[name=getcc]').val(),
+                }
+
+                $.ajax({
+                    type: 'POST',
+                    url: 'http://localhost:8000/api/user',
+                    data: user6
+                })
+                    .done(function (data) {
+                        $('input[name=getpropaddress]').val('');
+                        // display the database in the textarea and trigger an input change event
+                        $('#showContractDatabase').val((JSON.stringify(data))).trigger('input');
+                    });
+                e.preventDefault(); // when method is called, the default action of the event will not be triggered.
+                                    // meand that clicked submit button will not take the browser to a new URL.
+            });
+
+            $('#updateContract').submit(function (e) {
+                var user7 = { //all data that will be sent to node
+                    oldpropaddress: $('input[name=oldpropertyaddress]').val(),
+                    upcontractdate: $('input[name=upcontractdate]').val(),
+                    uppropaddress: $('input[name=uppropertyaddress]').val(),
+                    uptenantno: $('select[name=upTenantNo]').val(),
+                    uptenant1f: $('input[name=upPerson1FirstName]').val(),
+                    uptenant1s:  $('input[name=upPerson1Surname]').val(),
+                    uptenant2f:  $('input[name=upPerson2FirstName]').val(),
+                    uptenant2s: $('input[name=upPerson2Surname]').val(),
+                    uptenant3f: $('input[name=upPerson3FirstName]').val(),
+                    uptenant3s:$('input[name=upPerson3Surname]').val(),
+                    uplandlordf: $('input[name=uplandlordfirst]').val(),
+                    uplandlords:  $('input[name=uplandlordsurname]').val(),
+                    upfee: $('input[name=upfee]').val(),
+                    updoorno: $('input[name=updoorno]').val(),
+                    upcontractlength:$('select[name=upcontractlength]').val(),
+                    upproptype: $('select[name=upproptype]').val(),
+                    upotherPropInput: $('input[name=upotherPropInput]').val(),
+                    key6: $('button[name=updatecc]').val(),
+                };
+                $.ajax({
+                    type: 'POST',
+                    url: 'http://localhost:8000/api/user',
+                    data: user7
+                })
+                    .done(function (data) {
+                        // reset the html on submit for next input
+                        $('input[name=oldpropertyaddress]').val(''),
+                        $('input[name=upcontractdate]').val('');
+                        $('input[name=uppropertyaddress]').val('');
+                        $('input[name=upPerson1FirstName]').val('');
+                        $('input[name=upPerson1Surname]').val('');
+                        $('input[name=upPerson2FirstName]').val('');
+                        $('input[name=upPerson2Surname]').val('');
+                        $('input[name=upPerson3FirstName]').val('');
+                        $('input[name=upPerson3Surname]').val('');
+                        $('input[name=uplandlordfirst]').val('');
+                        $('input[name=uplandlordsurname]').val('');
+                        $('input[name=upfee]').val('');
+                        $('input[name=updoorno]').val('');
+                        $('select[name=upcontractlength]').val('');
+                        $('select[name=upproptype]').val('');
+                        $('input[name=upotherPropInput]').val('');
+
+
+                        // show confirmation message from API
+                        showUserModal(data);
+                    });
+                e.preventDefault(); // when method is called, the default action of the event will not be triggered.
+                                    // meand that clicked submit button will not take the browser to a new URL.
+            });
+            $('#delContractData').submit(function (e) {
+                var user8 = 
+                {
+                    delpropaddress:$('input[name=delpropaddress]').val(),
+                    key7: $('button[name=ccdel]').val(),
+                }
+
+                $.ajax({
+                    type: 'POST',
+                    url: 'http://localhost:8000/api/user',
+                    data: user8
+                })
+                    .done(function (data) 
+                    {
+                        $('input[name=delpropaddress]').val('');
+                    });
+                e.preventDefault(); // when method is called, the default action of the event will not be triggered.
+                                    // meand that clicked submit button will not take the browser to a new URL.
+            });
+
+
+
+            // this sets an event handler to resize the textarea after 
+            // a change event is triggered the call is triggered earlier
+            // after the content received from the API is written to the
+            // textarea it resizes to the size of the contained text
+            $("#showUserDatabase").on("input", function () {
+                this.style.height = (this.scrollHeight) + "px;overflow-y:hidden;";
+                this.style.height = "auto";
+                this.style.height = (this.scrollHeight) + "px";
+            });
+
+            $("#showContractDatabase").on("input", function () {
+                this.style.height = (this.scrollHeight) + "px;overflow-y:hidden;";
+                this.style.height = "auto";
+                this.style.height = (this.scrollHeight) + "px";
+            });
+        });
+
+        
+
+
+        function showUserModal(data) {
+            document.getElementById('modalUserAddedMessage').innerHTML = data;
+            document.getElementById('modalUserAdded').style.display = 'block';
+        }
+
+    </script>
+
+</body>
+
+</html>
